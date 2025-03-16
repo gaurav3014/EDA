@@ -1,61 +1,78 @@
-# corn-mycotoxin-prediction
 # Machine Learning Pipeline for Mycotoxin Prediction
 
 ## Overview
-This project aims to analyze corn data and predict DON (vomitoxin) concentration using machine learning techniques. It includes data preprocessing, dimensionality reduction, model training, and evaluation, along with a Streamlit web application for visualization.
+This repository contains a machine learning pipeline for analyzing corn data and predicting DON concentration levels. The pipeline includes data preprocessing, dimensionality reduction using PCA, training a CNN model, and evaluation. Additionally, a Streamlit app is provided for interactive visualization and inference.
 
 ## Project Structure
+
 ```
-├── app.py          # Streamlit web app
-├── pipeline.py     # Machine Learning pipeline
-├── unit_tests.py   # Unit tests for the pipeline
+├── app.py             # Streamlit app for visualization and prediction
+├── pipeline.py        # Machine Learning pipeline
+├── unit_tests.py      # Unit tests for pipeline
 ├── MLE-Assignment.csv # Sample dataset
-├── README.md       # Project documentation
+├── notebook.ipynb     # Jupyter Notebook for exploratory analysis
+├── README.md          # Project documentation
 ```
 
-## Installation
-Ensure you have Python 3.8+ installed. Then, install the dependencies:
+## Dataset
+- **File**: `MLE-Assignment.csv`
+- **Shape**: 5 rows × 450 columns
+- **Data Type**: Numerical
 
-```bash
-pip install -r requirements.txt
-```
+## Steps in the Pipeline
+
+### 1. Data Exploration and Preprocessing
+- Load dataset, check for missing values and outliers.
+- Standardize the data using `StandardScaler`.
+- Visualize the data (reflectance plots, histograms, heatmaps).
+
+### 2. Dimensionality Reduction
+- Apply **Principal Component Analysis (PCA)** to reduce dimensions.
+- Transform the data for model input.
+
+### 3. Model Training
+- **Split the dataset** (80% training, 20% testing).
+- **Reshape data** for CNN input (samples, time steps, features).
+- **Train a CNN model** for DON concentration prediction.
+- **Optimize hyperparameters** (Grid Search, Bayesian Optimization).
+
+### 4. Model Evaluation
+- **Metrics**:
+  - Mean Absolute Error (MAE): **0.20**
+  - Root Mean Squared Error (RMSE): **0.49**
+  - R² Score: **0.85**
+- **Visual Evaluation**:
+  - Scatter plots for actual vs predicted values.
+  - Residual analysis.
+- **Feature Importance Analysis** using SHAP.
+
+### 5. Deployment
+- Deploy the model using **FastAPI/Flask**.
+- Package the pipeline into a **Docker container**.
+- Streamlit app for real-time predictions.
 
 ## Running the Pipeline
-To execute the machine learning pipeline on a dataset:
 
+### Run the Full Pipeline
 ```bash
 python pipeline.py /path/to/MLE-Assignment.csv
 ```
 
-## Running Unit Tests
-To validate the pipeline's correctness, run:
-
+### Run the Pipeline with Unit Tests
 ```bash
 python unit_tests.py
 ```
 
-## Running the Streamlit App
-Launch the interactive web application with:
-
+### Run the Streamlit App
 ```bash
 streamlit run app.py
 ```
 
-## Model Performance
-- **Mean Absolute Error (MAE)**: 0.20
-- **Root Mean Squared Error (RMSE)**: 0.49
-- **R² Score**: 0.85
+## Deliverables
+- **Jupyter Notebook** (`notebook.ipynb`): Contains exploratory analysis and visualizations.
+- **Pipeline Script** (`pipeline.py`): End-to-end ML pipeline.
+- **Streamlit App** (`app.py`): Interactive UI.
+- **Unit Tests** (`unit_tests.py`): Validates pipeline functionality.
+- **README.md**: Project documentation.
 
-## Features
-- **Data Preprocessing**: Handling missing values, standardization
-- **Dimensionality Reduction**: PCA for feature reduction
-- **Model Training**: CNN-based regression model
-- **Evaluation Metrics**: MAE, RMSE, R² Score
-- **Streamlit App**: Visualization of predictions
-- **Unit Testing**: Ensuring pipeline correctness
 
-## Contribution
-Feel free to fork the repository and submit a pull request for improvements!
-
-## License
-MIT License
