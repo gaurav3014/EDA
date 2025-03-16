@@ -46,10 +46,7 @@ This repository contains a machine learning pipeline for analyzing corn data and
   - Residual analysis.
 - **Feature Importance Analysis** using SHAP.
 
-### 5. Deployment
-- Deploy the model using **FastAPI/Flask**.
-- Package the pipeline into a **Docker container**.
-- Streamlit app for real-time predictions.
+
 
 ## Running the Pipeline
 
@@ -73,6 +70,5 @@ streamlit run app.py
 - **Pipeline Script** (`pipeline.py`): End-to-end ML pipeline.
 - **Streamlit App** (`app.py`): Interactive UI.
 - **Unit Tests** (`unit_tests.py`): Validates pipeline functionality.
-- **README.md**: Project documentation.
 
 
